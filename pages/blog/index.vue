@@ -1,4 +1,3 @@
-
 <template>
   <div class="c-posts">
     <div class="c-post" v-for="post in blogPosts" :key="post.id">
