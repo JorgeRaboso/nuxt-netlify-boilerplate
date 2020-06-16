@@ -1,0 +1,17 @@
+{
+  "name": "nuxt-netlify",
+  "version": "1.0.0",
+  "description": "My striking Nuxt.js project",
+  "author": "Jorge Raboso Barceló",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.12.2"
+  },
+  "devDependencies": {}
+}
