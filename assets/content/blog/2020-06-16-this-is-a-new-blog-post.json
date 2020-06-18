@@ -1,6 +1,6 @@
 {
-  "date": "2020-06-16T11:50:06.410Z",
-  "title": "This is a new Blog Post",
-  "body": "`<div class=\"\">Hello from div</div>`",
-  "description": "This is a new Blog Post"
+  "date": "2020-05-01T11:50:06.410Z",
+  "title": "New JavaScript Features Coming in ES2020 That You Can Use Now",
+  "body": "Since the release of ES6 in 2015, JavaScript has been evolving fast with tons of new features coming out in each iteration. The new versions of the JavaScript language specification have been updated yearly, with new language feature proposal being finalized faster than ever. This means that new features are getting incorporated into modern browsers and other JavaScript run-time engines, like Node.js, at a pace that we haven’t seen before.\n\nIn 2019, there are many new features that are in the ‘Stage 3’ phase, which means that it’s very close to being finalized, and browsers/Node are getting support for these features now. If we want to use them for production, we can use something like Babel to transpile them to older versions of JavaScript so they can be used in older browsers like Internet Explorer if needed.",
+  "description": "New and powerful features in JavaScript: private fields in classes, optional chaining, nullish coalescing operator, and BigInts."
 }
