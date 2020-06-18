@@ -1,0 +1,27 @@
+:root {
+  --color-primary: #000;
+  --body-background: #fff;
+  --font-family: "Open Sans";
+  --post-color: #333;
+  --header-link-color: #333;
+  --switch-color: #333;
+  --change-layout-icons-background: #f6f6f6;
+  --change-layout-icons-color: #333;
+  --change-layout-icons-color-active: #333;
+}
+
+.dark-mode {
+  --color-primary:#fff;
+  --body-background: #000;
+  --post-color:#fff;
+  --header-link-color: #fff;
+  --switch-color: #fff;
+  --change-layout-icons-background: #fff;
+  --change-layout-icons-color: #fff;
+  --change-layout-icons-color-active: #333;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--body-background);
+}

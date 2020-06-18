@@ -1,20 +1,19 @@
 <template>
-  <div class="c-all-posts">
-    {{ PostsTimeline }}
-    <br>
-    {{this.$route.params}}
-  </div>
+    <div class="c-all-posts">
+        {{ PostsTimeline }}
+        <br>
+        {{ this.$route.params }}
+    </div>
 </template>
 <script>
-  export default {
-    methods: {
+    export default {
+        computed: {
+            PostsTimeline () {
+                return this.$store.getters.getLastPostOrderedByDate
+            }
+        },
+        methods: {
 
-    },
-    computed: {
-      PostsTimeline() {
-        return this.$store.getters['getLastPostOrderedByDate']
-      },
+        }
     }
-  }
 </script>
-
