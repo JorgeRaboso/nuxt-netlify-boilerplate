@@ -14,24 +14,37 @@ function dynamicSort(property) {
   }
 }
 
+function sortDate(a,b) {
+  return new Date(b.date) - new Date(a.date);
+}
+
 export const state = () => ({
   blogPosts: [],
   PostsTimeline: []
 });
 
+
+export const getters = {
+  getLastPostOrderedByDate: state =>  {
+    return state.blogPosts.filter(post => post.date).sort(function(a, b) {
+      new Date(a.date) - new Date(b.date);
+    }).reverse();
+  }
+}
+
 export const mutations = {
   setBlogPosts(state, list) {
     state.blogPosts = list;
-  },
-  setPostTimeline(state, list) {
-    console.log('set post timeline')
-    let a = list.sort(dynamicSort("title"));
-    console.log(a)
-    let filtered = list.filter(post => {
-
-    })
-    state.PostsTimeline = list
   }
+   /*
+  setPostTimeline(state, list) {
+
+    let a = list.sort(function(a,b){
+      return new Date(b.date) - new Date(a.date);
+    })
+    state.PostsTimeline = a
+  }*/
+
 };
 
 export const actions = {
@@ -43,6 +56,6 @@ export const actions = {
       return res;
     });
     await commit('setBlogPosts', blogPosts);
-    commit('setPostTimeline', blogPosts)
-  },
+    //await commit('setPostTimeline', blogPosts);
+  }
 };

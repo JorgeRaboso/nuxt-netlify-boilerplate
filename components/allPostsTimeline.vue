@@ -1,7 +1,8 @@
 <template>
   <div class="c-all-posts">
-    Todos los posts <br>
-    {{PostsTimeline}}
+    {{ PostsTimeline }}
+    <br>
+    {{this.$route.params}}
   </div>
 </template>
 <script>
@@ -11,7 +12,7 @@
     },
     computed: {
       PostsTimeline() {
-        return this.$store.state.PostsTimeline;
+        return this.$store.getters['getLastPostOrderedByDate']
       },
     }
   }
