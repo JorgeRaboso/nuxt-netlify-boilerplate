@@ -1,17 +1,20 @@
 
 <template>
-  <div class="c-posts">
-    <div class="c-post" v-for="post in blogPosts" :key="post.id">
-      <router-link :to="`blog/${post.slug}`" >LINK</router-link>
-      <div class="c-post__title">{{post.title}}</div>
-      <div class="c-post__name"></div>
+
+    <div class="c-posts">
+      <div class="c-post" v-for="post in blogPosts" :key="post.id">
+        <router-link :to="`blog/${post.slug}`" >LINK</router-link>
+        <div class="c-post__title">{{post.title}}</div>
+        {{post.image}}
+        <div class="c-post__name"></div>
+      </div>
     </div>
-    <AllPostsTimeline/>
-  </div>
+
 </template>
 
 <script>
 import AllPostsTimeline from '../../components/allPostsTimeline'
+
 export default {
   components: {
     AllPostsTimeline
