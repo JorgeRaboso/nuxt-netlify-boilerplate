@@ -3,5 +3,6 @@
   "title": "BEM and SASS: A Perfect Match",
   "description": "Fish and chips, Posh and Becks, Netflix and chill. These are all things that go well together; or so I’m told. It’s time to add BEM and SASS to the list.",
   "body": "[BEM](https://en.bem.info/methodology/)(Block. Element. Modifier) is a naming methodology, which aims to solve many of the problems you’ll commonly encounter when naming classes and structuring your CSS. It also does a great job of enabling you to create reusable front end components, which is something we all strive for: to be healthy, wealthy and create reusable components.",
-  "imagen": "/img/1_m6pglua_zysmwkycospvog.png"
+  "imagen": "/img/1_m6pglua_zysmwkycospvog.png",
+  "category": "js"
 }
