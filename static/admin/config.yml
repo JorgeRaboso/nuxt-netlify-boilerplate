@@ -20,13 +20,14 @@ collections:
       - { label: 'Image', name: 'imagen', widget: 'image' }
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
-      - { label: 'Category', name: 'category', widget: 'select', options: ["js", "design", "html"] }
-      - { label: 'Category222', name: 'category222', widget: 'relation', collection: "categories", valueField: "name", searchFields: ["name"], displayFields: ["name"] }
+      - { label: 'Category', name: 'category', widget: 'relation', collection: "categories", valueField: "name", searchFields: ["name"], displayFields: ["name"] }
   - name: 'categories'
     label: 'Categorias'
     format: 'json'
     folder: 'assets/content/categories'
     create: true
+    editor:
+      preview: false
     widget: relation
     collection: blog
     searchFields: categories
