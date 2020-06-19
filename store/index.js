@@ -1,6 +1,7 @@
 export const state = () => ({
     blogPosts: [],
     filters: [],
+    categories: [],
     PostsTimeline: [],
     activeTheme: false,
     postsLayoutTheme: false
@@ -25,6 +26,10 @@ export const mutations = {
     setBlogPosts (state, list) {
         state.blogPosts = list
     },
+    setBlogCategories (state, list) {
+        console.log(list)
+        state.categories = list
+    },
     setTypeOfFilters (list) {
         console.log(list)
         state.filters = list.filter(post => {
@@ -32,9 +37,7 @@ export const mutations = {
         })
         return state.filters
     },
-    setPostsLayout (state) {
 
-    },
     setTheme (state) {
         state.activeTheme = !state.activeTheme
         document.body.classList.toggle('dark-mode', state.activeTheme)
@@ -58,8 +61,14 @@ export const actions = {
             res.slug = key.slice(2, -5)
             return res
         })
+        const categories = await require.context('~/assets/content/categories/', false, /\.json$/)
+        const blogCategories = categories.keys().map(key => {
+            const res = categories(key)
+            res.slug = key.slice(2, -5)
+            return res
+        })
+
         await commit('setBlogPosts', blogPosts)
-        //  await commit('setTypeOfFilters', blogPosts)
-    // await commit('setPostTimeline', blogPosts);
+        await commit('setBlogCategories', blogCategories)
     }
 }

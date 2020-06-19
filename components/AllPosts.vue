@@ -6,6 +6,7 @@
             'c-posts-list--list' : view === 'list'
         }"
     >
+        {{ categories }}
         <Filters :is-filtered="isFiltered" :filter-list="getFilters" @change-filter="getPostByCategory" />
         <div class="c-posts-list__heading">
             <div class="c-post-count">
@@ -33,6 +34,7 @@
         },
         data () {
             return {
+                categories: [],
                 posts: [],
                 isFiltered: false,
                 filtered: [],
@@ -54,10 +56,14 @@
         },
         mounted () {
             this.getPosts()
+            this.getCategories()
         },
         methods: {
             changeView (newView) {
                 this.view = newView
+            },
+            getCategories () {
+                this.categories = this.$store.state.categories
             },
             getPosts () {
                 this.posts = this.$store.state.blogPosts
