@@ -22,9 +22,14 @@ collections:
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Category', name: 'category', widget: 'select', options: ["js", "design", "html"] }
       - { label: 'Category222', name: 'category222', widget: 'relation', collection: "categories", valueField: "name", searchFields: ["name"], displayFields: ["name"] }
-  - name: 'Categories'
+  - name: 'categories'
     label: 'Categorias'
     format: 'json'
+    folder: 'assets/content/categories'
     create: true
+    widget: relation
+    collection: blog
+    searchFields: categories
+    valueField: categories
     fields:
       - { label: 'Name', name: 'name', widget: 'string' }
