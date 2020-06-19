@@ -1,5 +1,6 @@
 export const state = () => ({
     blogPosts: [],
+    filters: [],
     PostsTimeline: [],
     activeTheme: false,
     postsLayoutTheme: false
@@ -10,12 +11,26 @@ export const getters = {
         return state.blogPosts.filter(post => post.date).sort(function (a, b) {
             return new Date(a.date) - new Date(b.date)
         }).reverse()
+    },
+    getAllCategory: state => {
+        const uniqueCategorys = Array.from(new Set(state.blogPosts.map(post => post.category)))
+        return uniqueCategorys
+    },
+    getPostByCategory: (state, getters) => (category) => {
+        return state.blogPosts.filter(post => post.category === category)
     }
 }
 
 export const mutations = {
     setBlogPosts (state, list) {
         state.blogPosts = list
+    },
+    setTypeOfFilters (list) {
+        console.log(list)
+        state.filters = list.filter(post => {
+            return post.category
+        })
+        return state.filters
     },
     setPostsLayout (state) {
 
@@ -44,6 +59,7 @@ export const actions = {
             return res
         })
         await commit('setBlogPosts', blogPosts)
+        //  await commit('setTypeOfFilters', blogPosts)
     // await commit('setPostTimeline', blogPosts);
     }
 }

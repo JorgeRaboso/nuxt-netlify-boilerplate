@@ -37,12 +37,14 @@ export default {
   ** Nuxt.js dev-modules
   */
     buildModules: [
+        '@nuxtjs/color-mode'
     ],
     /*
   ** Nuxt.js modules
   */
     modules: [
-        '@nuxtjs/style-resources'
+        '@nuxtjs/style-resources',
+        '@nuxtjs/svg'
     ],
     styleResources: {
         scss: [

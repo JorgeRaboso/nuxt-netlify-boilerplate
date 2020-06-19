@@ -2,10 +2,11 @@
     <div
         class="c-posts-list"
         :class="{
-            'c-posts-list--grid' : view == 'grid',
-            'c-posts-list--list' : view == 'list'
+            'c-posts-list--grid' : view === 'grid',
+            'c-posts-list--list' : view === 'list'
         }"
     >
+        <Filters :is-filtered="isFiltered" :filter-list="getFilters" @change-filter="getPostByCategory" />
         <div class="c-posts-list__heading">
             <div class="c-post-count">
                 {{ postCount.count }} {{ postCount.text }}
@@ -22,20 +23,21 @@
 <script>
     import Post from '../components/Post'
     import ChangePostView from '../components/ChangePostView'
+    import Filters from '../components/Filters'
+
     export default {
         components: {
             Post,
-            ChangePostView
-        },
-        props: {
-            posts: {
-                type: Array,
-                default: () => []
-            }
+            ChangePostView,
+            Filters
         },
         data () {
             return {
-                view: 'grid'
+                posts: [],
+                isFiltered: false,
+                filtered: [],
+                view: 'grid',
+                activeFilter: 'all'
             }
         },
         computed: {
@@ -44,17 +46,31 @@
                     count: this.posts.length > 0 ? this.posts.length : 0,
                     text: this.posts.length > 0 ? 'Resultados' : 'Resultado'
                 }
-
                 return postsNumber
+            },
+            getFilters () {
+                return this.$store.getters.getAllCategory
             }
+        },
+        mounted () {
+            this.getPosts()
         },
         methods: {
             changeView (newView) {
                 this.view = newView
             },
-            getPostCount () {
-                const postsNumber = this.posts.length > 0 ? this.posts.length : 0
-                return postsNumber
+            getPosts () {
+                this.posts = this.$store.state.blogPosts
+            },
+            getPostByCategory (category) {
+                this.activeFilter = category
+                if (category === 'all') {
+                    this.getPosts()
+                    this.isFiltered = false
+                } else {
+                    this.isFiltered = true
+                    this.posts = this.$store.getters.getPostByCategory(category)
+                }
             }
         }
     }
@@ -94,9 +110,7 @@
              grid-template-columns: 1fr;
           }
         }
-
       }
-
     }
     &--list {
       .c-posts-list {
@@ -106,12 +120,11 @@
        display: grid;
        grid-template-columns: 130px auto;
        grid-gap: 32px;
-
        &__media {
          order: -1;
-
        }
       }
     }
   }
+
 </style>

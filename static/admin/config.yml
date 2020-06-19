@@ -21,17 +21,10 @@ collections:
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Category', name: 'category', widget: 'select', options: ["js", "design", "html"] }
-  - name: 'Landing'
-    label: 'Landing'
+      - { label: 'Category222', name: 'category222', widget: 'relation', collection: "categories", valueField: "name" }
+  - name: 'Categories'
+    label: 'Categorias'
     format: 'json'
-    folder: 'assets/content/blog'
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    editor:
-      preview: false
     fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Imagen', name: 'imagen', widget: 'image' }
-      - { label: 'Description', name: 'description', widget: 'string' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Name', name: 'name', widget: 'string' }

@@ -6,27 +6,27 @@
                     {{ link.text }}
                 </nuxt-link>
             </nav>
-            <SwitchTheme class="c-header__switch-theme" />
+            <ColorModePicker class="c-header__theme-picker" />
         </div>
     </header>
 </template>
 
 <script>
-    import SwitchTheme from '../components/SwithTheme'
+    import ColorModePicker from '../components/ColorModePicker'
     export default {
         components: {
-            SwitchTheme
+            ColorModePicker
         },
         data () {
             return {
                 links: [
                     {
-                        ref: '/blog',
-                        text: 'Blog'
-                    },
-                    {
                         ref: '/',
                         text: 'Home'
+                    },
+                    {
+                        ref: '/blog',
+                        text: 'Blog'
                     }
                 ]
             }
@@ -44,6 +44,7 @@
       display: grid;
       grid-template-columns: 1fr auto;
       width: 100%;
+      align-items: center;
     }
     &__link {
       margin-right: 32px;

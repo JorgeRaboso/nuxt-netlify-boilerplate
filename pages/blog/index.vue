@@ -1,6 +1,6 @@
 
 <template>
-    <AllPosts :posts="blogPosts" />
+    <AllPosts />
 </template>
 
 <script>
@@ -9,11 +9,6 @@
     export default {
         components: {
             AllPosts
-        },
-        computed: {
-            blogPosts () {
-                return this.$store.state.blogPosts
-            }
         }
     }
 </script>

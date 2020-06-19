@@ -8,9 +8,11 @@
   --change-layout-icons-background: #f6f6f6;
   --change-layout-icons-color: #333;
   --change-layout-icons-color-active: #333;
+  --color-text: #000;
 }
 
 .dark-mode {
+  --color-text: #fff;
   --color-primary:#fff;
   --body-background: #000;
   --post-color:#fff;

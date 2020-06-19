@@ -1,6 +1,9 @@
 <template>
     <div class="c-post">
         <div class="c-post__content">
+            <div class="c-post__tag">
+                {{ category }}
+            </div>
             <h2 class="c-post__title">
                 <router-link :to="`blog/${slug}`">
                     {{ title }}
@@ -21,6 +24,10 @@
     export default {
         props: {
             title: {
+                type: String,
+                default: undefined
+            },
+            category: {
                 type: String,
                 default: undefined
             },
@@ -59,6 +66,12 @@
     -webkit-box-orient: vertical;
     color: var(--post-color);
     line-height: 24px;
+    }
+    &__tag {
+      color: var(--post-color);
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
     }
     &__title {
       font-size: 20px;
