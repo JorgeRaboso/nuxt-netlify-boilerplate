@@ -1,16 +1,23 @@
 <template>
-    <div class="c-tag-filter">
-        <div
-            v-for="filter in filterList"
-            :key="filter.id"
-            class="c-tag-filter__item"
-            :class="{'is-active': activeFilter === filter}"
-            @click="filterResults(filter)"
-        >
-            {{ filter }}
-        </div>
-        <div v-if="isFiltered" class="c-tag-filter__item" @click="filterResults('all')">
-            Ver todos
+    <div class="c-filters">
+        <div class="c-filters__inner">
+            <div class="c-filters__toggle" @click="toggleFilters">
+                Filtrar
+            </div>
+            <div v-if="isActive" class="c-filters__list">
+                <div
+                    v-for="filter in filterList"
+                    :key="filter.id"
+                    class="c-tag-filter__item"
+                    :class="{'is-active': activeFilter === filter.name}"
+                    @click="filterResults(filter.name)"
+                >
+                    {{ filter.name }}
+                </div>
+                <div v-if="isFiltered" class="c-tag-filter__item" @click="filterResults('all')">
+                    Ver todos
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -29,6 +36,7 @@
         },
         data () {
             return {
+                isActive: false,
                 activeFilter: 'all'
             }
         },
@@ -36,24 +44,38 @@
             filterResults (category) {
                 this.activeFilter = category
                 this.$emit('change-filter', category)
+            },
+            toggleFilters () {
+                this.isActive = !this.isActive
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
+.c-filters {
+  margin-bottom: 64px;
+  &__toggle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  &__list {
+    margin-top: 16px;
+        display: flex;
+        align-items: center;
+  }
+}
 .c-tag-filter {
-    display: flex;
-    align-items: center;
     &__item {
       padding: 8px 16px;
-      color: #000;
-      border: 1px solid #000;
+      color: var(--base-text);
+      border: 1px solid var(--base-text);
       border-radius: 4px;
       margin-right: 16px;
       &.is-active {
-        background: #000;
-        color: #fff;
+        background: var(--base-text);
+        color: var(--base-background);
       }
       &:last-child {
         margin-right: 0;

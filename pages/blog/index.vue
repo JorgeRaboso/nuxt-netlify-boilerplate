@@ -1,14 +1,14 @@
 
 <template>
-    <AllPosts />
+    <PostsList />
 </template>
 
 <script>
-    import AllPosts from '../../components/AllPosts'
+    import PostsList from '../../components/PostsList'
 
     export default {
         components: {
-            AllPosts
+            PostsList
         }
     }
 </script>

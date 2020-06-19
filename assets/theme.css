@@ -9,12 +9,15 @@
   --change-layout-icons-color: #333;
   --change-layout-icons-color-active: #333;
   --color-text: #000;
+  --base-background: #fff;
+  --base-text: #000;
 }
 
 .dark-mode {
+  --base-background: #000;
+  --base-text: #fff;
   --color-text: #fff;
   --color-primary:#fff;
-  --body-background: #000;
   --post-color:#fff;
   --header-link-color: #fff;
   --switch-color: #fff;
@@ -25,5 +28,6 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--body-background);
+  background-color: var(--base-background);
+  color: var(--base-text)
 }
