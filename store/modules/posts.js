@@ -4,7 +4,10 @@ const state = () => ({
 })
 
 const getters = {
-    getPostByCategory: state => category => state.blogPosts.filter(post => post.category === category)
+    getPostByCategory: state => category => state.blogPosts.filter(post => post.category === category),
+    getStickyPosts: function (state) {
+        return state.blogPosts.filter(post => post.category === 'CSS')
+    }
 }
 
 const mutations = {

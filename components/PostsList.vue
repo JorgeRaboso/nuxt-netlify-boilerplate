@@ -124,9 +124,11 @@
         grid-template-columns: 1fr;
       }
      .c-post {
-       display: grid;
-       grid-template-columns: 130px auto;
-       grid-gap: 32px;
+       &__inner {
+          display: grid;
+          grid-template-columns: 130px auto;
+          grid-gap: 32px;
+       }
        &__media {
          order: -1;
        }

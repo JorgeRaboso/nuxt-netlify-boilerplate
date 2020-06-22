@@ -1,22 +1,24 @@
 <template>
     <div class="c-post">
-        <div class="c-post__content">
-            <div class="c-post__tag">
-                {{ category }}
+        <div class="c-post__inner">
+            <div class="c-post__content">
+                <div class="c-post__tag">
+                    {{ category }}
+                </div>
+                <h2 class="c-post__title">
+                    <router-link :to="`blog/${slug}`">
+                        {{ title }}
+                    </router-link>
+                </h2>
+                <p class="c-post__description">
+                    {{ description }}
+                </p>
             </div>
-            <h2 class="c-post__title">
+            <div class="c-post__media">
                 <router-link :to="`blog/${slug}`">
-                    {{ title }}
+                    <img :src="imagen" :alt="title">
                 </router-link>
-            </h2>
-            <p class="c-post__description">
-                {{ description }}
-            </p>
-        </div>
-        <div class="c-post__media">
-            <router-link :to="`blog/${slug}`">
-                <img :src="imagen" :alt="title">
-            </router-link>
+            </div>
         </div>
     </div>
 </template>
@@ -84,6 +86,38 @@
         text-decoration: none;
         &:hover {
           text-decoration: underline;
+        }
+      }
+    }
+    &--sticky {
+      .c-post {
+        &__inner {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+        &__content {
+          z-index: 2;
+          grid-column: 1/2;
+          grid-row: 1/2;
+          padding: 16px;
+        }
+        &__media {
+          z-index: 1;
+          grid-column: 1/2;
+          grid-row: 1/2;
+          position: relative;
+          &::before {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: rgba(0,0,0,0.25);
+            content: "";
+          }
+          img {
+            width: 100%;
+          }
         }
       }
     }
