@@ -6,13 +6,13 @@
                     <div class="c-results__body">
                         <div
                             class="c-posts-list"
-                            :class="{'c-posts-list--grid' : view === 'grid','c-posts-list--list' : view === 'list'}"
+                            :class="{'c-posts-list--grid' : getViewState === 'grid','c-posts-list--list' : getViewState === 'list'}"
                         >
                             <div class="c-posts-list__heading">
                                 <div class="c-post-count">
                                     {{ postCount.count }} {{ postCount.text }}
                                 </div>
-                                <ChangePostView :view="view" @change-view="changeView" />
+                                <ChangePostView :view="getViewState" @change-view="changeView" />
                             </div>
 
                             <div class="c-posts-list__inner">
@@ -63,33 +63,30 @@
                 posts: [],
                 isFiltered: false,
                 filtered: [],
-                view: 'list',
-                activeFilter: 'all',
-                demo: [],
-                a: []
+                view: undefined,
+                activeFilter: 'all'
             }
         },
         computed: {
             postCount: function () {
                 const postsNumber = {
                     count: this.posts.length > 0 ? this.posts.length : 0,
-                    text: this.posts.length > 0 ? 'Resultados' : 'Resultado'
+                    text: this.posts.length > 1 ? 'Results' : 'Result'
                 }
 
                 return postsNumber
+            },
+            getViewState () {
+                return this.$store.getters.getView
             }
         },
         mounted () {
             this.getPosts()
-            // this.getCategories()
             this.getCategoriesWithPosts()
         },
         methods: {
             changeView (newView) {
-                this.view = newView
-            },
-            getCategories () {
-                // this.categories = this.$store.state.posts.categories
+                this.$store.commit('setView', newView)
             },
             getCategoriesWithPosts () {
                 const categories = this.$store.state.posts.categories
@@ -122,7 +119,7 @@
 .c-results {
   &__inner {
     display: grid;
-    grid-template-columns: 65% 35%;
+    grid-template-columns: 65% 1fr;
     grid-gap: 32px;
   }
 }

@@ -5,6 +5,7 @@
                 <LogoIcon />
             </div>
             <nav class="c-header__nav">
+                <Searcher />
                 <nuxt-link v-for="link in links" :key="link.id" class="c-header__link" :to="link.ref">
                     {{ link.text }}
                 </nuxt-link>
@@ -19,31 +20,22 @@
 <script>
     import HamIcon from '@/assets/icons/ham.svg?inline'
     import LogoIcon from '@/assets/icons/logo.svg?inline'
+    import Searcher from '@/components/Searcher'
     export default {
         components: {
             HamIcon,
-            LogoIcon
+            LogoIcon,
+            Searcher
         },
         data () {
             return {
                 links: [
-                    {
-                        ref: '/',
-                        text: 'Home'
-                    },
-                    {
-                        ref: '/blog',
-                        text: 'Blog'
-                    }
+
                 ]
             }
         },
         methods: {
             toggleMenu () {
-                console.log({
-                    store: this.$store.state.menu.isActive,
-                    from: 'Header'
-                })
                 this.$store.commit('toggleMenu', !this.$store.state.menu.isActive)
             }
         }

@@ -9,10 +9,9 @@
                                 <Post class="c-post--sticky" v-bind="post" />
                             </swiper-slide>
                         </template>
-                        <div v-if="posts && enableSliderControls" class="">
-                            <div slot="button-prev" class="swiper-button-prev"></div>
-                            <div slot="button-next" class="swiper-button-next"></div>
-                        </div>
+
+                        <div slot="button-prev" class="swiper-button-prev"></div>
+                        <div slot="button-next" class="swiper-button-next"></div>
                         <div v-if="posts && enableSliderControls" slot="pagination" class="swiper-pagination"></div>
                     </swiper>
                 </div>
@@ -46,12 +45,14 @@
                 },
                 posts: undefined,
                 swiperOptions: {
+                    loop: true,
                     navigation: {
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev'
                     },
                     pagination: {
-                        el: '.swiper-pagination'
+                        el: '.swiper-pagination',
+                        type: 'progressbar'
                     }
                 }
             }
@@ -86,5 +87,8 @@
   &__sticky {
     max-width: 100%;
   }
+}
+.swiper-button-disabled {
+  //display: none;
 }
 </style>
