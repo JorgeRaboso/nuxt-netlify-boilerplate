@@ -82,6 +82,9 @@
 <style lang="scss">
 .c-blog-display {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
+  &__sticky {
+    max-width: 100%;
+  }
 }
 </style>

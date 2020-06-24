@@ -113,6 +113,7 @@
           grid-column: 1/2;
           grid-row: 1/2;
           position: relative;
+          height: 400px;
           &::before {
             position: absolute;
             width: 100%;
@@ -124,6 +125,7 @@
           }
           img {
             width: 100%;
+            height: 100%;
           }
         }
       }
