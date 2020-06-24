@@ -12,7 +12,7 @@
   --base-background: #fff;
   --base-text: #000;
   --white: #fff;
-  --color-1: #01c58d;
+  --color-1: #177258;
 }
 
 .dark-mode {
@@ -26,6 +26,7 @@
   --change-layout-icons-background: #fff;
   --change-layout-icons-color: #fff;
   --change-layout-icons-color-active: #333;
+  --color-1: #22ffc0;
 }
 
 body {

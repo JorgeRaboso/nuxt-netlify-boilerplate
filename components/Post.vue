@@ -70,7 +70,7 @@
     line-height: 24px;
     }
     &__tag {
-      color: #01c58d;
+      color: #177258;
       font-size: 12px;
       text-transform: uppercase;
       margin-bottom: 4px;
