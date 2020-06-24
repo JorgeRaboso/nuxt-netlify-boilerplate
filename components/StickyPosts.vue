@@ -1,25 +1,26 @@
 <template>
-    <div class="c-section">
-        <div class="c-section__sticky">
-            <swiper ref="mySwiper" :options="swiperOptions">
-                <template v-if="posts">
-                    <swiper-slide v-for="post in posts" :key="post.id">
-                        <Post class="c-post--sticky" v-bind="post" />
-                    </swiper-slide>
-                </template>
-
-                <div class="">
-                    <div slot="button-prev" class="swiper-button-prev"></div>
-                    <div slot="button-next" class="swiper-button-next"></div>
+    <Section v-bind="literals.headingSection">
+        <template slot="body">
+            <div class="c-blog-display">
+                <div class="c-blog-display__sticky">
+                    <swiper ref="mySwiper" :options="swiperOptions">
+                        <template v-if="posts">
+                            <swiper-slide v-for="post in posts" :key="post.id">
+                                <Post class="c-post--sticky" v-bind="post" />
+                            </swiper-slide>
+                        </template>
+                        <div v-if="posts && enableSliderControls" class="">
+                            <div slot="button-prev" class="swiper-button-prev"></div>
+                            <div slot="button-next" class="swiper-button-next"></div>
+                        </div>
+                        <div v-if="posts && enableSliderControls" slot="pagination" class="swiper-pagination"></div>
+                    </swiper>
                 </div>
-
-                <div slot="pagination" class="swiper-pagination"></div>
-            </swiper>
-        </div>
-        <div class="c-section__banner">
-            Banner
-        </div>
-    </div>
+                <div class="c-blog-display__banner">
+                </div>
+            </div>
+        </template>
+    </Section>
 </template>
 
 <script>
@@ -27,15 +28,23 @@
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
     import 'swiper/css/swiper.css'
     import Post from '../components/Post'
+    import Section from '../components/Section'
     export default {
         components: {
             Swiper,
             SwiperSlide,
-            Post
+            Post,
+            Section
         },
         data () {
             return {
-                posts: null,
+                literals: {
+                    headingSection: {
+                        title: 'Related posts',
+                        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eius doloribus numquam totam quas nam corrupti maxime obcaecati molestias repellendus? Delectus sapiente iste eius repudiandae.'
+                    }
+                },
+                posts: undefined,
                 swiperOptions: {
                     navigation: {
                         nextEl: '.swiper-button-next',
@@ -50,6 +59,9 @@
         computed: {
             swiper () {
                 return this.$refs.mySwiper.$swiper
+            },
+            enableSliderControls () {
+                return this.posts.length > 1
             }
         },
         mounted () {
@@ -62,19 +74,14 @@
             },
             getStickyPosts () {
                 this.posts = this.$store.getters.getStickyPosts
-                console.log(this.posts)
             }
         }
     }
 </script>
 
 <style lang="scss">
-.c-section {
-  &__sticky {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 32px;
-    padding: 32px;
-  }
+.c-blog-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 </style>

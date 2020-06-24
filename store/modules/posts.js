@@ -1,12 +1,16 @@
 const state = () => ({
     blogPosts: [],
+    stickyPosts: [],
     categories: []
 })
 
 const getters = {
     getPostByCategory: state => category => state.blogPosts.filter(post => post.category === category),
     getStickyPosts: function (state) {
-        return state.blogPosts.filter(post => post.category === 'CSS')
+        return state.blogPosts.filter(post => post.sticky)
+    },
+    getPostCount: function (state) {
+        return state.blogPosts.length
     }
 }
 

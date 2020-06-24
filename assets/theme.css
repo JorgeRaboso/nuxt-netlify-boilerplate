@@ -11,6 +11,8 @@
   --color-text: #000;
   --base-background: #fff;
   --base-text: #000;
+  --white: #fff;
+  --color-1: #01c58d;
 }
 
 .dark-mode {

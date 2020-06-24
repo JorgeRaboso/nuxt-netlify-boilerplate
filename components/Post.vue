@@ -70,10 +70,11 @@
     line-height: 24px;
     }
     &__tag {
-      color: var(--post-color);
+      color: #01c58d;
       font-size: 12px;
       text-transform: uppercase;
       margin-bottom: 4px;
+      font-weight: 600;
     }
     &__title {
       font-size: 20px;
@@ -90,6 +91,7 @@
       }
     }
     &--sticky {
+      color: var(--white);
       .c-post {
         &__inner {
           display: grid;
@@ -100,6 +102,11 @@
           grid-column: 1/2;
           grid-row: 1/2;
           padding: 16px;
+        }
+        &__description,
+        &__tag,
+        &__title {
+          color: var(--white);
         }
         &__media {
           z-index: 1;
@@ -112,7 +119,7 @@
             height: 100%;
             left: 0;
             top: 0;
-            background: rgba(0,0,0,0.25);
+            background: rgba(0,0,0,0.45);
             content: "";
           }
           img {

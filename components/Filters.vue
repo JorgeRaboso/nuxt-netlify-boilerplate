@@ -1,21 +1,23 @@
 <template>
     <div class="c-filters">
         <div class="c-filters__inner">
-            <div class="c-filters__toggle" @click="toggleFilters">
-                Filtrar
-            </div>
-            <div v-if="isActive" class="c-filters__list">
-                <div
-                    v-for="filter in filterList"
-                    :key="filter.id"
-                    class="c-tag-filter__item"
-                    :class="{'is-active': activeFilter === filter.name}"
-                    @click="filterResults(filter.name)"
-                >
-                    {{ filter.name }}
+            <div class="c-filters__item">
+                <div class="c-filters__toggle" @click="toggleFilters">
+                    Filter by category:
                 </div>
-                <div v-if="isFiltered" class="c-tag-filter__item" @click="filterResults('all')">
-                    Ver todos
+                <div v-if="isActive" class="c-filters__list">
+                    <div
+                        v-for="filter in filterList"
+                        :key="filter.id"
+                        class="c-tag-filter__item"
+                        :class="{'is-active': activeFilter === filter}"
+                        @click="filterResults(filter)"
+                    >
+                        {{ filter }}
+                    </div>
+                    <div v-if="isFiltered" class="c-tag-filter__item" @click="filterResults('all')">
+                        See all
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,7 +38,7 @@
         },
         data () {
             return {
-                isActive: false,
+                isActive: true,
                 activeFilter: 'all'
             }
         },

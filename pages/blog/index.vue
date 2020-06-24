@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <div class="l-home-blog">
         <StickyPosts />
         <PostsList />
     </div>

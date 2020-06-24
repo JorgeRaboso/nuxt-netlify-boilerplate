@@ -1,44 +1,72 @@
 <template>
-    <div
-        class="c-posts-list"
-        :class="{
-            'c-posts-list--grid' : view === 'grid',
-            'c-posts-list--list' : view === 'list'
-        }"
-    >
-        <Filters :is-filtered="isFiltered" :filter-list="categories" @change-filter="getPostByCategory" />
-        <div class="c-posts-list__heading">
-            <div class="c-post-count">
-                {{ postCount.count }} {{ postCount.text }}
-            </div>
-            <ChangePostView :view="view" @change-view="changeView" />
-        </div>
+    <Section v-bind="literals.headingSection">
+        <template slot="body">
+            <div class="c-results">
+                <div class="c-results__inner">
+                    <div class="c-results__body">
+                        <div
+                            class="c-posts-list"
+                            :class="{'c-posts-list--grid' : view === 'grid','c-posts-list--list' : view === 'list'}"
+                        >
+                            <div class="c-posts-list__heading">
+                                <div class="c-post-count">
+                                    {{ postCount.count }} {{ postCount.text }}
+                                </div>
+                                <ChangePostView :view="view" @change-view="changeView" />
+                            </div>
 
-        <div class="c-posts-list__inner">
-            <Post v-for="post in posts" :key="post.id" v-bind="post" />
-        </div>
-    </div>
+                            <div class="c-posts-list__inner">
+                                <Post v-for="post in posts" :key="post.id" v-bind="post" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c-results__aside">
+                        <Filters class="c-results__filter" :is-filtered="isFiltered" :filter-list="categories" @change-filter="getPostByCategory" />
+                        <Banner v-bind="banner" />
+                    </div>
+                </div>
+            </div>
+        </template>
+    </Section>
 </template>
 
 <script>
     import Post from '../components/Post'
     import ChangePostView from '../components/ChangePostView'
     import Filters from '../components/Filters'
+    import Section from '../components/Section'
+    import Banner from '../components/Banner'
 
     export default {
         components: {
             Post,
             ChangePostView,
-            Filters
+            Filters,
+            Section,
+            Banner
         },
         data () {
             return {
+                literals: {
+                    headingSection: {
+                        title: 'All Posts',
+                        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eius doloribus numquam totam quas nam corrupti maxime obcaecati molestias repellendus? Delectus sapiente iste eius repudiandae.'
+                    }
+                },
+                banner: {
+                    src: 'https://miro.medium.com/freeze/max/304/1*vbxsCjMIFnA-Uif2SJmcQA.gif',
+                    href: 'https://www.google.es',
+                    title: 'Indie.vc: Unicorns Are Out, Profits Are In',
+                    text: 'Why a creative approach to venture capital is powering more sustainable startups — and more diverse founders'
+                },
                 categories: [],
                 posts: [],
                 isFiltered: false,
                 filtered: [],
-                view: 'grid',
-                activeFilter: 'all'
+                view: 'list',
+                activeFilter: 'all',
+                demo: [],
+                a: []
             }
         },
         computed: {
@@ -53,17 +81,28 @@
         },
         mounted () {
             this.getPosts()
-            this.getCategories()
+            // this.getCategories()
+            this.getCategoriesWithPosts()
         },
         methods: {
             changeView (newView) {
                 this.view = newView
             },
             getCategories () {
-                this.categories = this.$store.state.posts.categories
+                // this.categories = this.$store.state.posts.categories
+            },
+            getCategoriesWithPosts () {
+                const categories = this.$store.state.posts.categories
+                categories.forEach(cat => {
+                    this.posts.some(post => {
+                        if (post.category === cat.name) {
+                            return this.categories.push(cat.name)
+                        }
+                    })
+                })
             },
             getPosts () {
-                this.posts = this.$store.state.posts.blogPosts
+                this.posts = this.$store.state.posts.blogPosts.filter(post => !post.sticky)
             },
             getPostByCategory (category) {
                 this.activeFilter = category
@@ -80,8 +119,14 @@
 </script>
 
 <style lang="scss">
+.c-results {
+  &__inner {
+    display: grid;
+    grid-template-columns: 65% 35%;
+    grid-gap: 32px;
+  }
+}
   .c-posts-list {
-    padding: 32px;
     &__inner {
       display: grid;
       grid-gap: 32px;
@@ -104,15 +149,8 @@
       .c-posts-list {
         &__inner {
 
-          @media (min-width: 1024px)  {
-             grid-template-columns: 1fr 1fr 1fr;
-          }
-                 @media (min-width: 1200px)  {
-             grid-template-columns: 1fr 1fr 1fr 1fr;
-          }
-          @media (max-width: 1023px)  {
              grid-template-columns: 1fr 1fr;
-          }
+
           @media (max-width: 480px)  {
              grid-template-columns: 1fr;
           }
