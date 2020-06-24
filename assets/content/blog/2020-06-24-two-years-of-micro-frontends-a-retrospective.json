@@ -1,0 +1,9 @@
+{
+  "sticky": false,
+  "date": "2020-06-24T13:53:38.892Z",
+  "title": "Two years of micro-frontends: A retrospective",
+  "imagen": "/img/1_bk45m4pe-i0wjfliblb0tq.png",
+  "description": "We’ve now been using micro-frontends for two years at Beamery. In May 2018 we wrote a post announcing to the world that we’d solved our legacy application problem.",
+  "body": "# Divergence\n\nThe speed at which we could create new applications meant that we delivered most new product features as new micro-frontend applications. Every new micro-frontend was delivered with React, but that was where the similarities ended.\n\nMicro-frontends allowed teams and individuals to experiment. Our engineers loved the freedom to try new technologies regularly. However, as a rapidly growing startup, we didn’t manage this well.\n\nFrom code-style and application architecture, through to user experience, our applications were diverging. We built a component library in an attempt to introduce standardisation and code sharing, but without clear ownership, that project encountered problems of its own.",
+  "category": "JS"
+}
