@@ -1,0 +1,9 @@
+{
+  "sticky": false,
+  "date": "2020-06-24T14:08:20.415Z",
+  "title": "Beginner’s Guide to SVG Morph",
+  "description": "I have a big soft spot in my heart for SVGs. Before I discovered web dev, I used Inkscape (an open source vector graphics software) all the time because I didn’t want (and couldn’t afford) to buy Adobe Photoshop or Illustrator. ",
+  "body": "As I said, I wanted to morph the stars in my design to create a subtle glowing effect so I changed the points of each individual star so that the stars where thinner in Shape B.\n\nIt’s super important that the paths you want to morph have the same number of points. The morph won’t work if there are not the exact same number of points in each image so be careful not to add or delete any!\n\nAnother hot tip when creating your image files is to keep your Photoshop file super organized. It’s important because the layer names and conventions you use in your Photoshop file will translate into the code that Photoshop generates when you export your file. So keep your layers organized — you will thank yourself later! Also to make it simple for myself I converted the shapes I wanted to morph into paths ([here’s a quick video on how to do that](https://www.youtube.com/watch?v=jptlMVZrIDo)).",
+  "category": "HTML",
+  "imagen": "/img/1_vspx4o4ohjfkjdrfamfu-q.png"
+}
