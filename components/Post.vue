@@ -2,7 +2,7 @@
     <div class="c-post">
         <div class="c-post__inner">
             <div class="c-post__content">
-                <div class="c-post__tag">
+                <div v-if="category" class="c-post__tag">
                     {{ category }}
                 </div>
                 <h2 class="c-post__title">
@@ -10,7 +10,7 @@
                         {{ title }}
                     </router-link>
                 </h2>
-                <p class="c-post__description">
+                <p v-if="description" class="c-post__description">
                     {{ description }}
                 </p>
             </div>
@@ -87,6 +87,26 @@
         text-decoration: none;
         &:hover {
           text-decoration: underline;
+        }
+      }
+    }
+    &--list {
+        margin-bottom: 8px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      .c-post {
+        &__inner {
+          display: grid;
+          grid-template-columns: 40px 1fr;
+          grid-gap: 16px;
+        }
+        &__title {
+          line-height: 20px;
+          font-size: 16px;
+        }
+        &__media {
+          order: -1;
         }
       }
     }

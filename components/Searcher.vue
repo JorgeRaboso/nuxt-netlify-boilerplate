@@ -1,13 +1,71 @@
 <template>
     <div ref="searcher" class="c-search-box">
-        <div class="c-searcher__inner">
-            <div class="c-searcher__input">
-                <input type="text" name="seacher" placeholder="Buscar">
+        <div class="c-search-box__inner">
+            <div class="c-search-box__input">
+                <input
+                    v-model="search"
+                    type="text"
+                    name="seacher"
+                    placeholder="Buscar"
+                    class="is-active"
+                >
                 <span></span>
+            </div>
+            <div class="c-search-box__results">
+                <Popover>
+                    <template v-if="filteredList.length > 0">
+                        <Post
+                            v-for="post in filteredList"
+                            :key="post.id"
+                            class="c-post--list"
+                            :title="post.title"
+                            :imagen="post.imagen"
+                            :slug="post.slug"
+                        />
+                    </template>
+                    <div v-else class="c-search-box__no-results">
+                        No hay resultados
+                    </div>
+                </Popover>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import Post from '../components/Post'
+    import Popover from '../components/Popover'
+    export default {
+        components: {
+            Post,
+            Popover
+        },
+        data () {
+            return {
+                search: '',
+                posts: []
+            }
+        },
+        computed: {
+            filteredList () {
+                return this.posts.filter(post => {
+                    return post.title.toLowerCase().includes(this.search.toLowerCase())
+                })
+            }
+        },
+        mounted () {
+            this.getPosts()
+        },
+        methods: {
+            toggleSearcher () {
+                this.$refs.searcher.classList.toggle('is-active')
+            },
+            getPosts () {
+                this.posts = this.$store.state.posts.blogPosts
+            }
+        }
+    }
+</script>
 
 <style lang="scss" scoped>
   .c-search-box {
@@ -24,24 +82,25 @@
       border: none;
       box-sizing: border-box;
       border-radius: 50px;
-      transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 0.5) 600ms;
+      transition: width 400ms cubic-bezier(0.5, -0.5, 0.5, 0.5) 300ms;
       &:focus {
         outline: none;
       }
+      &.is-active,
       &:focus,
       &:not(:placeholder-shown) {
         width: 300px;
-        transition: width 800ms cubic-bezier(0.5, -0.5, 0.5, 1.5);
+        transition: width 400ms cubic-bezier(0.5, -0.5, 0.5, 1.5);
         + span {
           bottom: 13px;
           right: 10px;
-          transition: bottom 300ms ease-out 800ms, right 300ms ease-out 800ms;
+          transition: bottom 150ms ease-out 400ms, right 150ms ease-out 400ms;
         }
         + span:after {
           top: 0;
           right: 10px;
           opacity: 1;
-          transition: top 300ms ease-out 1100ms, right 300ms ease-out 1100ms, opacity 300ms ease 1100ms;
+          transition: top 150ms ease-out 550ms, right 150ms ease-out 550ms, opacity 150ms ease 550ms;
         }
       }
     }
@@ -54,7 +113,7 @@
       position: absolute;
       bottom: -13px;
       right: -15px;
-      transition: bottom 300ms ease-out 300ms, right 300ms ease-out 300ms;
+      transition: bottom 150ms ease-out 150ms, right 150ms ease-out 150ms;
       &::before,
       &::after {
         content: '';
@@ -68,30 +127,9 @@
         opacity: 0;
         top: -20px;
         right: -10px;
-        transition: top 300ms ease-out, right 300ms ease-out, opacity 300ms ease-out;
+        transition: top 150ms ease-out, right 150ms ease-out, opacity 150ms ease-out;
       }
     }
   }
 
 </style>
-
-<script>
-    export default {
-        data () {
-            return {
-                posts: []
-            }
-        },
-        mounted () {
-            this.getPosts()
-        },
-        methods: {
-            toggleSearcher () {
-                this.$refs.searcher.classList.toggle('is-active')
-            },
-            getPosts () {
-                this.posts = this.$store.state.posts.blogPosts
-            }
-        }
-    }
-</script>

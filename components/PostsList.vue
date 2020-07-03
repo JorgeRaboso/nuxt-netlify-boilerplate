@@ -1,6 +1,7 @@
 <template>
     <Section v-bind="literals.headingSection">
         <template slot="body">
+            {{ getViewState }}
             <div class="c-results">
                 <div class="c-results__inner">
                     <div class="c-results__body">
