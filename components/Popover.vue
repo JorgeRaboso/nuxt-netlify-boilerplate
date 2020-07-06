@@ -1,13 +1,16 @@
 <template>
-    <popper trigger="click" :options="{placement: 'bottom'}">
-        <div class="popper">
-            <slot />
-        </div>
+    <div>
+        <slot name="reference"></slot>
+        <popper trigger="click" :options="{placement: 'bottom'}">
+            <div class="popper">
+                <slot />
+            </div>
 
-        <button slot="reference">
-            Reference Element
-        </button>
-    </popper>
+            <button slot="reference">
+                Reference Element
+            </button>
+        </popper>
+    </div>
 </template>
 
 <script>
